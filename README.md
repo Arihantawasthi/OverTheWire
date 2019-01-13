@@ -480,3 +480,21 @@ Password: truKLdjsbJ5g7yyJ2X2R0o3a5HQJFuLk
 
 #### Bandit Level10 -> Level11:
 The password for the next level is stored in the file data.txt, which contains base64 encoded data.
+#### Solution:
+```
+base64 -d data.txt
+The password is IFukwKGsFW8MOq3IRFqrxE1hxTNEbUPR
+```
+Password: IFukwKGsFW8MOq3IRFqrxE1hxTNEbUPR
+
+
+#### Bandit Level11 -> Level12:
+The password for the next level is stored in the file data.txt, where all lowercase (a-z) and uppercase (A-Z) letters have been rotated by 13 positions.
+#### Solution:
+```
+cat data.txt | tr 'a-zA-Z' n-za-mN-ZA-M'
+```
+Password: 5Te8Y4drgCRfCx8ugdwuEX8KFC6k2EUu
+
+
+#### Bandit Level12 -> Level13:
