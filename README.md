@@ -615,3 +615,13 @@ total 24
 ```
 #### What the hell happened to bandit!!
 
+
+#### Bandit Level14 -> Level15:
+The password for the next level can be retrieved by submitting the password of the current level to port 30000 on localhost.
+
+#### Solution: 
+login to bandit14
+```
+cat /etc/bandit_pass/bandit14
+```
+Password: 4wcYUJFw0k0XLShlDzztnTBHiqxU3b3e
