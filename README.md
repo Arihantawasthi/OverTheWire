@@ -206,3 +206,277 @@ Password: cvX2JJa4CFALtqS87jk27qwqGhBM9plV
 
 
 #### Bandit Level8 -> Level9
+The password for the next level is stored in the file data.txt and is the only line of text that occurs only once.
+#### Solution:
+```
+sort data.txt | uniq -c
+```
+Password: UsvVyFSfZZWbi6wgC7dAFyFuR6jQQUhR
+
+
+#### Bandit Level9 -> Level10:
+The password for the next level is stored in the file data.txt in one of the few human-readable strings, beginning with several ‘=’ characters.
+#### Solution:
+```
+strings -a data.txt
+
+MBB
+`B6ha
+nK)U2u
+&y@@2
+5Lo%
+ru@n
+D}U'
+e#s.	
+!:/%p
+*'dZ
+bgM>H
+M0d>uG
+G@?>
+"a`*
+38zT
+`mNg H
+:U[,
+c?Vh
+CEhL5d
+2========== the
+r,!l
+FMQ]2
+Sf2 
+5iu^B
+#e1[u
+k+0dbun
+h.TF
+>V	I
+Zaf3
+OWj6
+GY	E
+,ebr
+i$Vh
+CL}0Vx<M6
+mB#L
+S%T{`G
+LUu]\
+`r	$C
+xL4%
+!AwV
+@T.a-
+6NJ~
+<E:C{{
+!|#D
+8kk#A
+Ju:5s-~
+{vbT
+1mBO
+^VS'
+oFP/;l
+*m&-
+Q"7d
+`THN
+GI5M
+!(Yl
+G\@P
+h2aO
+XvMTP
+Hm["V
+|,ZO
+n1p	A
+TE[S
+3EQi
+)'0U
+a;0\
+az|Y+
+w]Ov
+`4F<N
+t8lHX u
+W.uO7
+i$2w
+epg~
+i^eE
+========== password
+NHGu
+5xhH
+|f;P]!
+~5&:
+oc8,`:
+>t=	yP
+rV~dHm=
+];,I
+tw3y
+[[N#
+xo?C
+h\h<M
+&B&l
+DgdJ
+c	_<9>D
+Igzz
+//Jr
+:DLq
+qEk9s
+ci`2
+c([t
+y>?+
+jgF5X
+T}~_Z]
+========== isa
+P-+i
+$OGu
+Ez&.
+3 5w
+"k"}
+yA1H]W
+	@m>[
+fhul
+&%I{
+g0?W;
+SXEO
+Q,9_
+$!T1
+Z:rU
+m$jJ
+oM\U
+g%tq_
+"dPy~
+ox:z
+X9H]*x]
+S2Fx
+5Vmgn
+hP}"
+e&/R
+czdy
+h;W	
+g[W%
+=FQ?P\U
+#u&	ZQ~f
+.r@v
+H.yKk
+\3;W
+oZ_N
+U4@v
+	IOG+
+"{q<
+=	F[
+2YkI!
+wt2N
+-q}u
+5eQP
+snn`*
+"T?X^
+D2HM
+H0&t.
+$Y)&wA	Y
+D%t`
+\<Nj
+\Zo\h]
+'NL}B
+*	+ta
+Fj~%E
+5m*rU?w[
+BE3K
+]o#s
+i_9r
+0L&,
+HfA0
+<h%7
+9Mz;
+|NJP
+pb=x
+AAbd<
+\+pW
+n_'h
+f^<-KJ
+J;m=
+#&Op
+\u~#
+nd19
+o?Mwf
+m\uG
+Z7 IS|
+FN+r
+4FS;
+lj/f
+d3hM
+)/<PO
+$O@]
+qbvT
+vXib
+]Knt
+:m;r
+w:	vC
+>{Tz
+pT{%5
+tYrQT(
+dsTaFp
+lI_z
+UoUf
+5{0+
+Xj/^
+cT>ZHE
+6G5L
+F2wrB
+m14g
+{82AX
+7k6	
+~$0bDWT
+@Mgk
+	:uy
+`'8u
+!"Di
+I#8B
++"aH
+?L'[i!#S
+!H>k0J
+	0l`c
+kH )
+=)$=
+}mOU
+[_g25
+72\P
+xQf]
+7li&
+========== truKLdjsbJ5g7yyJ2X2R0o3a5HQJFuLk
+ypi*
+lTq;
+UqUY`
+d&lk
+wU5	
+iv8!=
+fBBB
+^$a?
+,FAl
+5M_8
+RcJ h
+*JI;
+mzy8s#
+8("Ym
+W	3C
+c0@L<.
+yP1g
+?9Xc6
+VkcO
+ZI	-^ip
+*t[z
+{d2~
+q7 u@
+J@&C
+JI9J
++TuBy
+^ek$
+K8P77f+
+"1oq
+Nd^*<
+((97
+47M<}
+&~Zd
+Sh+b
+8a?E
++vex1]
+Y(Zs
+Cl/(;
+{4x
+```
+Password: truKLdjsbJ5g7yyJ2X2R0o3a5HQJFuLk
+
+
+#### Bandit Level10 -> Level11:
+The password for the next level is stored in the file data.txt, which contains base64 encoded data.
