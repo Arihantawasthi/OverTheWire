@@ -623,5 +623,94 @@ The password for the next level can be retrieved by submitting the password of t
 login to bandit14
 ```
 cat /etc/bandit_pass/bandit14
-```
 Password: 4wcYUJFw0k0XLShlDzztnTBHiqxU3b3e
+
+cat /etc/bandit_pass/bandit14 | nc localhost 30000
+```
+Password: BfMYroe26WYalil77FoDi9qh59eK5xNr
+
+
+#### Bandit Level15 -> Level16:
+The password for the next level can be retrieved by submitting the password of the current level to port 30001 on localhost using SSL encryption.
+
+Helpful note: Getting “HEARTBEATING” and “Read R BLOCK”? Use -ign_eof and read the “CONNECTED COMMANDS” section in the manpage. Next to ‘R’ and ‘Q’, the ‘B’ command also works in this version of that command…
+#### Solution:
+```
+echo "BfMYroe26WYalil77FoDi9qh59eK5xNr" | openssl s_client -connect  localhost:30001 -ign_eof
+CONNECTED(00000003)
+depth=0 CN = localhost
+verify error:num=18:self signed certificate
+verify return:1
+depth=0 CN = localhost
+verify return:1
+---
+Certificate chain
+ 0 s:/CN=localhost
+   i:/CN=localhost
+---
+Server certificate
+-----BEGIN CERTIFICATE-----
+MIICBjCCAW+gAwIBAgIENHv1njANBgkqhkiG9w0BAQUFADAUMRIwEAYDVQQDDAls
+b2NhbGhvc3QwHhcNMTkwMTEzMTkzNDMwWhcNMjAwMTEzMTkzNDMwWjAUMRIwEAYD
+VQQDDAlsb2NhbGhvc3QwgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJAoGBALOkCuqD
+hi2X8nQ1Fu/p2hHx+3SeORNWt76H7Q/Wr8ZYapwViACu7h/d+Gn1Z4/1ZVN5Ukz3
+fiS7UiA73eJg2iLo9rXzPw01hVB+IA4RtSTBmsUm7vwIgNDv5RsrYLl6JCGaZ+ns
+/z5ihBHILWT3zvLyAn98HUiVAjAahiuwBtHxAgMBAAGjZTBjMBQGA1UdEQQNMAuC
+CWxvY2FsaG9zdDBLBglghkgBhvhCAQ0EPhY8QXV0b21hdGljYWxseSBnZW5lcmF0
+ZWQgYnkgTmNhdC4gU2VlIGh0dHBzOi8vbm1hcC5vcmcvbmNhdC8uMA0GCSqGSIb3
+DQEBBQUAA4GBABiUJgikW8Ig5kuqkB3VCZiACRm5bsC4T5EH531RtzDi6Yywnqm3
+xDbfWzLIoWpVq2U2pViIVsPmQ6nGjASQSlQhxsg9kZBaqYB26AcgrmbVIruywtij
+JXvZkb10yrXeqtfK5bO8+kILa8XSBVbIXQ55Cn4HiHE7NtDZBOLBTl2/
+-----END CERTIFICATE-----
+subject=/CN=localhost
+issuer=/CN=localhost
+---
+No client certificate CA names sent
+Peer signing digest: SHA512
+Server Temp Key: X25519, 253 bits
+---
+SSL handshake has read 1019 bytes and written 269 bytes
+Verification error: self signed certificate
+---
+New, TLSv1.2, Cipher is ECDHE-RSA-AES256-GCM-SHA384
+Server public key is 1024 bit
+Secure Renegotiation IS supported
+Compression: NONE
+Expansion: NONE
+No ALPN negotiated
+SSL-Session:
+    Protocol  : TLSv1.2
+    Cipher    : ECDHE-RSA-AES256-GCM-SHA384
+    Session-ID: CD5198D92457BF75F87A0C0EAEF998DEA63F5AB78C0120DEF334AC278316D6DD
+    Session-ID-ctx: 
+    Master-Key: 64355AB9924363EF440CCE6C80B54FAA34982B835B2B12FA37ACFE1822FEE578565DBAED62F19A00D63BD8C5A94D2E6A
+    PSK identity: None
+    PSK identity hint: None
+    SRP username: None
+    TLS session ticket lifetime hint: 7200 (seconds)
+    TLS session ticket:
+    0000 - 32 a4 5b 29 4b c8 06 db-a5 7e c7 95 4f fd c4 c1   2.[)K....~..O...
+    0010 - 55 37 e5 5c a1 91 ba 50-7b 12 f4 5d e4 3a 9d 10   U7.\...P{..].:..
+    0020 - 08 5e 80 e3 cc 64 8d e1-d9 16 25 84 53 35 cd 70   .^...d....%.S5.p
+    0030 - ea 9e a4 33 8b c6 6e 5e-4c b9 2f 9b 61 a0 01 d4   ...3..n^L./.a...
+    0040 - 1a d8 3d f5 d0 e8 9a 3c-0a 97 19 8e 19 2f ae a3   ..=....<...../..
+    0050 - 40 56 a7 ed 8e 54 ec 1e-e7 83 32 1e 2e cc 4b 15   @V...T....2...K.
+    0060 - 91 c3 c8 d7 f3 fd 54 75-31 9a 6f e1 9a 6c 4a 04   ......Tu1.o..lJ.
+    0070 - b8 1f 29 67 5b 2e 0e 09-7e 1a ab 39 8f 96 2e 11   ..)g[...~..9....
+    0080 - 45 e0 8b a0 7e bb 79 38-89 ef c1 84 de 0c a4 91   E...~.y8........
+    0090 - 41 77 0a c1 e8 c0 4f 28-75 c0 58 c2 ac 6c 0a 82   Aw....O(u.X..l..
+
+    Start Time: 1547411700
+    Timeout   : 7200 (sec)
+    Verify return code: 18 (self signed certificate)
+    Extended master secret: yes
+---
+Correct!
+cluFn7wTiGryunymYOu4RcffSxQluehd
+
+closed
+```
+Password: cluFn7wTiGryunymYOu4RcffSxQluehd
+
+
+
