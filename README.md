@@ -583,3 +583,35 @@ vim sshkey.private.txt .
 chmod 600 sshkey.private.txt
 ssh -i sshkey.private.txt bandit14@bandit.labs.overthewire.og -p 2220
 ```
+#### Wait! What?
+```
+                                                                               
+Broadcast message from root@bandit (pts/24) (Sun Jan 13 20:19:24 2019):        
+                                                                               
+sorry, smal reboot coming up.                                                  
+no time no time letz do some crime                                             
+happy whatever day it is                                                       
+cheers                                                                         
+morla                                                                          
+                                                                               
+
+Broadcast message from root@bandit (pts/24) (Sun Jan 13 20:20:18 2019):
+
+The system is going DOWN for reboot in 10 minutes!
+
+Broadcast message from root@bandit (pts/24) (Sun Jan 13 20:21:18 2019):
+
+The system is going DOWN for reboot in 9 minutes!
+
+Broadcast message from root@bandit (pts/24) (Sun Jan 13 20:22:18 2019):
+
+The system is going DOWN for reboot in 8 minutes!
+
+Broadcast message from root@bandit (pts/24) (Sun Jan 13 20:23:18 2019):
+
+The system is going DOWN for reboot in 7 minutes!
+ls -al
+total 24
+```
+#### What the hell happened to bandit!!
+
