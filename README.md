@@ -717,6 +717,112 @@ Password: cluFn7wTiGryunymYOu4RcffSxQluehd
 The credentials for the next level can be retrieved by submitting the password of the current level to a port on localhost in the range 31000 to 32000. First find out which of these ports have a server listening on them. Then find out which of those speak SSL and which don’t. There is only 1 server that will give the next credentials, the others will simply send back to you whatever you send to it.
 #### Solution:
 ```
+bandit16@bandit:~$ nc -zv localhost 31000-32000
+localhost [127.0.0.1] 31960 (?) open
+localhost [127.0.0.1] 31790 (?) open
+localhost [127.0.0.1] 31518 (?) open
+bandit16@bandit:~$ for i in 31960 31790 31518
+> do
+> echo "cluFn7wTiGryunymYOu4RcffSxQluehd" | openssl s_client -connect localhost:$i -ign_eof
+> done
+CONNECTED(00000003)
+140055921763584:error:141A10F4:SSL routines:ossl_statem_client_read_transition:unexpected message:../ssl/statem/statem_clnt.c:269:
+---
+no peer certificate available
+---
+No client certificate CA names sent
+---
+SSL handshake has read 176 bytes and written 183 bytes
+Verification: OK
+---
+New, (NONE), Cipher is (NONE)
+Secure Renegotiation IS NOT supported
+Compression: NONE
+Expansion: NONE
+No ALPN negotiated
+SSL-Session:
+    Protocol  : TLSv1.2
+    Cipher    : 0000
+    Session-ID: 
+    Session-ID-ctx: 
+    Master-Key: 
+    PSK identity: None
+    PSK identity hint: None
+    SRP username: None
+    Start Time: 1547723067
+    Timeout   : 7200 (sec)
+    Verify return code: 0 (ok)
+    Extended master secret: no
+---
+CONNECTED(00000003)
+depth=0 CN = localhost
+verify error:num=18:self signed certificate
+verify return:1
+depth=0 CN = localhost
+verify return:1
+---
+Certificate chain
+ 0 s:/CN=localhost
+   i:/CN=localhost
+---
+Server certificate
+-----BEGIN CERTIFICATE-----
+MIICBjCCAW+gAwIBAgIELHlSDDANBgkqhkiG9w0BAQUFADAUMRIwEAYDVQQDDAls
+b2NhbGhvc3QwHhcNMTkwMTEzMTkzNDMwWhcNMjAwMTEzMTkzNDMwWjAUMRIwEAYD
+VQQDDAlsb2NhbGhvc3QwgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJAoGBAJ4UdWRN
+ZmKD+47wp9PM6kCsCLM6u3WD1ByGlnJn3HeILlCxId2oaklGkOx/BzYcX8m0U+wU
+XrC8/lC0o1YHfgfCaVht4ubhmrlD4iUnY7pABtIsrIdLgz/Ee54121GG2+ZZfmpq
+mMytFoWyHSQUNFtavUMPYkzNCI8FO7GiLIZrAgMBAAGjZTBjMBQGA1UdEQQNMAuC
+CWxvY2FsaG9zdDBLBglghkgBhvhCAQ0EPhY8QXV0b21hdGljYWxseSBnZW5lcmF0
+ZWQgYnkgTmNhdC4gU2VlIGh0dHBzOi8vbm1hcC5vcmcvbmNhdC8uMA0GCSqGSIb3
+DQEBBQUAA4GBAEtU/dx2IFDG7q3IcOmYkrvzHlmUKMXPiQqJgim/nzAo89is3A2B
+S9+oWaaCX+Z5Hz97h7nJNFQHTjpoKKP0wS7ZqdpXFXFOVa4rD12hPEebqE/fCPiC
+bOoJkI78ZtUg3fbal8XPHyQK4QcOfgfVAIjSgoUfiNJYQz+0Yqh6EMEp
+-----END CERTIFICATE-----
+subject=/CN=localhost
+issuer=/CN=localhost
+---
+No client certificate CA names sent
+Peer signing digest: SHA512
+Server Temp Key: X25519, 253 bits
+---
+SSL handshake has read 1019 bytes and written 269 bytes
+Verification error: self signed certificate
+---
+New, TLSv1.2, Cipher is ECDHE-RSA-AES256-GCM-SHA384
+Server public key is 1024 bit
+Secure Renegotiation IS supported
+Compression: NONE
+Expansion: NONE
+No ALPN negotiated
+SSL-Session:
+    Protocol  : TLSv1.2
+    Cipher    : ECDHE-RSA-AES256-GCM-SHA384
+    Session-ID: EE1D74BAEEE8311D28E2813FB8615BA0F43F2DF1B786E7E2F4CFED3571F28E03
+    Session-ID-ctx: 
+    Master-Key: 8C5826005BC990D59B05A28FB87E2F801668FC24A351C8913E0647817939F3667FAB0D532A8B0EAB94E18CD282A41010
+    PSK identity: None
+    PSK identity hint: None
+    SRP username: None
+    TLS session ticket lifetime hint: 7200 (seconds)
+    TLS session ticket:
+    0000 - fe 2e da f4 cd cd e9 23-46 73 02 6e ca e6 93 3a   .......#Fs.n...:
+    0010 - f5 38 98 c2 9f 4a 10 3f-59 19 aa d7 03 a2 72 ca   .8...J.?Y.....r.
+    0020 - 9c 80 dc cc 07 af a8 02-ec 64 9c 75 21 95 ea 75   .........d.u!..u
+    0030 - 53 34 95 f0 2d 41 d1 0a-4f b5 24 79 fc 97 b9 5d   S4..-A..O.$y...]
+    0040 - af 78 27 88 44 66 4f 4d-cc 82 8a 1c 09 04 3a fc   .x'.DfOM......:.
+    0050 - 84 bc 9c 5d 22 c0 f6 a6-96 e8 fb d9 93 87 ee 78   ...]"..........x
+    0060 - ad 93 14 10 41 cc 2f 22-5a f4 ea 1d e4 fe 78 eb   ....A./"Z.....x.
+    0070 - 30 36 f0 e9 20 86 fd ad-0a a4 1a cb 49 c4 d3 41   06.. .......I..A
+    0080 - 71 89 9b 0f 5c 92 ce a1-7e 34 17 97 cf e4 10 82   q...\...~4......
+    0090 - e9 dc c1 5d a8 21 a6 67-49 d4 14 04 31 68 c5 1b   ...].!.gI...1h..
+
+    Start Time: 1547723067
+    Timeout   : 7200 (sec)
+    Verify return code: 18 (self signed certificate)
+    Extended master secret: yes
+---
+Correct!
 -----BEGIN RSA PRIVATE KEY-----
 MIIEogIBAAKCAQEAvmOkuifmMg6HL2YPIOjon6iWfbp7c3jx34YkYWqUH57SUdyJ
 imZzeyGC0gtZPGujUSxiJSWI/oTqexh+cAMTSMlOJf7+BrJObArnxd9Y7YT2bRPQ
@@ -733,7 +839,7 @@ vLY9r60wYSvmZhNqBUrj7lyCtXMIu1kkd4w7F77k+DjHoAXyxcUp1DGL51sOmama
 8c8hAuRBb2G82so8vUHk/fur85OEfc9TncnCY2crpoqsghifKLxrLgtT+qDpfZnx
 SatLdt8GfQ85yA7hnWWJ2MxF3NaeSDm75Lsm+tBbAiyc9P2jGRNtMSkCgYEAypHd
 HCctNi/FwjulhttFx/rHYKhLidZDFYeiE/v45bN4yFm8x7R/b0iE7KaszX+Exdvt
-SpJVyusavPzpaJMjdJ6tcFhVAbAjm7enCIvGCSx+X3l5SiWg0A
+SghaTdcG0Knyw1bpJVyusavPzpaJMjdJ6tcFhVAbAjm7enCIvGCSx+X3l5SiWg0A
 R57hJglezIiVjv3aGwHwvlZvtszK6zV6oXFAu0ECgYAbjo46T4hyP5tJi93V5HDi
 Ttiek7xRVxUl+iU7rWkGAXFpMLFteQEsRr7PJ/lemmEY5eTDAFMLy9FL2m9oQWCg
 R8VdwSk8r9FGLS+9aKcV5PI/WEKlwgXinB3OhYimtiG2Cg5JCqIZFHxD6MjEGOiu
@@ -744,6 +850,20 @@ YOdjHdSOoKvDQNWu6ucyLRAWFuISeXw9a/9p7ftpxm0TSgyvmfLF2MIAEwyzRqaM
 dxviW8+TFVEBl1O4f7HVm6EpTscdDxU+bCXWkfjuRb7Dy9GOtt9JPsX8MBTakzh3
 vBgsyi/sN3RqRBcGU40fOoZyfAMT8s1m/uYv52O6IgeuZ/ujbjY=
 -----END RSA PRIVATE KEY-----
+
+closed
+CONNECTED(00000003)
+depth=0 CN = localhost
+verify error:num=18:self signed certificate
+verify return:1
+depth=0 CN = localhost
+verify return:1
+---
+Certificate chain
+ 0 s:/CN=localhost
+   i:/CN=localhost
+---
+
 ```
 ```
 ssh -i sshkey.private.txt bandit17@bandit.labs.overthewire.org -p 2220
